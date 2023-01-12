@@ -1,2 +1,2 @@
-# Hymn-Harmony
+# Hymn-and-Harmony
 Web_t project
