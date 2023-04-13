@@ -184,7 +184,7 @@ section{
     background: rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
-    border-radius: 60px;
+    border-radius: 40px;
     padding: 10px 20px;
     /* position: absolute; */
 }
@@ -196,7 +196,7 @@ section{
     outline: none;
     padding: 40px 10px;
     font-size: 15px;
-    color: rgb(255, 255, 255);
+    /* color: rgb(255, 255, 255,); */
 
 }
 .searchbar button img{
@@ -232,7 +232,7 @@ section{
 }
 
 .nav-btn :hover{
-    background-color: rgb(37, 124, 111);
+    filter: invert(80%);
 }
 
 .home{

@@ -22,5 +22,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const autho = getAuth(app)
-firebase.auth()
 console.log(app.options)
