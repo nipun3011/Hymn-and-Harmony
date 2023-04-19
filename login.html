@@ -3,34 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width==, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login/Register</title>
     <link rel="stylesheet" href="style2.css">
+    
 </head>
 <body>
     <div class="form">
-        <form class="buyer" id="loginBuyer" action="#">
+        <form class="buyer" id="loginBuyer" action="#" onsubmit="login()">
             <label for="">Login As Buyer</label>
-            <input type="text" placeholder="User-ID / Email">
-            <input type="password" placeholder="Password">
-            <button type="submit" onclick="">Submit</button>
-            <button type="button" class="switch" id="switch" onclick="switchForm()">New to H&H? Sign-up</button>
+            <input id="signin-email" type="email" placeholder="User-ID / Email"/>
+            <input id="signin-password" type="password" placeholder="Password"/>
+            <button id="login" type="submit">Submit</button>
+            <button id="switchsb" type="button" class="switch" onclick="switchForm()">New to H&H? Sign-up</button>
         </form>
         <form class="buyer" id="signupBuyer" action="#">
             <label for="">Register As Buyer</label>
-            <input type="text" placeholder="Name">
-            <input type="date" placeholder="Date">
-            <input type="text" placeholder="User-ID / Email">
-            <input type="password" placeholder="Password">
-            <button type="submit">Submit</button>
-            <button type="button" class="switch" id="switch" onclick="switchForm()">Already have an account? Log-in</button>
+            <input id="username" type="text" placeholder="Name"/>
+            <!-- <input type="date" placeholder="Date"/> -->
+            <input id="email" type="email" placeholder="User-ID / Email"/>
+            <input id="password" type="password" placeholder="Password"/>
+            <button id="signup" type="submit">Submit</button>
+            <button id="switchlb" type="button" class="switch" onclick="switchForm()">Already have an account? Log-in</button>
         </form>
         <form class="seller" id="loginSeller" action="#">
             <label for="">Login As Seller</label>
             <input type="text" placeholder="User-ID / Email">
             <input type="password" placeholder="Password">
             <button type="submit" onclick="">Submit</button>
-            <button type="button" class="switch" id="switch" onclick="switchForm()">New to H&H? Sign-up</button>
+            <button type="button" class="switch" onclick="switchForm()">New to H&H? Sign-up</button>
         </form>
         <form class="seller" id="signupSeller" action="#">
             <label for="">Register As Seller</label>
@@ -39,10 +40,103 @@
             <input type="text" placeholder="User-ID / Email">
             <input type="password" placeholder="Password">
             <button type="submit">Submit</button>
-            <button type="button" class="switch" id="switch" onclick="switchForm()">Already have an account? Log-in</button>
+            <button type="button" class="switch" onclick="switchForm()">Already have an account? Log-in</button>
         </form>
     </div>
-    <script type="module" src="firebase.js"></script>
-    <script src="login.js"></script>
+    
+    <!-- <script type="text/javascript" src="login.js"></script> -->
+    
 </body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDN9gJusscqw5t81msNJ0ZxsBsvDa0L9kw",
+      authDomain: "validation-8bf51.firebaseapp.com",
+      databaseURL: "https://validation-8bf51-default-rtdb.firebaseio.com",
+      projectId: "validation-8bf51",
+      storageBucket: "validation-8bf51.appspot.com",
+      messagingSenderId: "664130060634",
+      appId: "1:664130060634:web:1defbe07b5c0d28ebeb363"
+    };
+    var signup = document.getElementById("signup");
+    var login = document.getElementById("login");
+    
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+    signup.addEventListener('click',(e)=> {
+        e.preventDefault();
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var username = document.getElementById('username').value;
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed in 
+            const user = userCredential.user;
+            set(ref(database,'users/' + user.uid),{
+                username: username,
+                email : email,
+                password : password  
+            })
+            alert('user created!');
+            // ...
+            })
+            .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorMessage);
+            console.log(error);
+            // ..
+            });
+        });
+    login.addEventListener('click',(e)=>{
+        // e.preventDefault();
+        var email = document.getElementById('signin-email').value;
+        var password = document.getElementById('signin-password').value;
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        const dt = new Date();
+        update(ref(database,'users/' + user.uid),{
+        last_login: dt,
+
+        })
+        alert('user loged in!');
+        
+        // ...
+        })
+        .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+    });
+
+
+    });
+    const user = auth.currentUser;
+    onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        // window.location.replace("index.html")
+        // ...
+    } else {
+    // User is signed out
+    // ...
+    }
+    });
+
+</script>
+<!-- <script src="login.js"></script> -->
 </html>

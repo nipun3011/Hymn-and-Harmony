@@ -4,7 +4,7 @@
     --black:#130f40;
     --white:#fff;
     /* --gradient:linear-gradient(darkviolet, deeppink);  */
-    --gradient:linear-gradient(rgb(37, 124, 111), rgb(0, 0, 0));
+    --gradient:linear-gradient(rgb(157, 0, 188), rgb(0, 0, 0));
     --background:rgba(255,255,255,.1);
     --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
     --border:.1rem solid rgba(255,255,255,.1);
@@ -47,10 +47,11 @@ section{
 }
 
 .heading{
+    position: relative;
     text-align: center;
     padding-bottom: 2.5rem;
     z-index: 1;
-
+    margin: 4rem auto 1rem;
 }
 
 .heading span{
@@ -82,6 +83,10 @@ section{
 
 .btn:hover{
     letter-spacing: .1rem;
+    font-size: 20px;
+    /* background-color: rgb(57,130,119); */
+    filter: invert(90%);
+
 }
 
 .gradient-background{
@@ -184,7 +189,7 @@ section{
     background: rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
-    border-radius: 40px;
+    border-radius: 60px;
     padding: 10px 20px;
     /* position: absolute; */
 }
@@ -196,7 +201,7 @@ section{
     outline: none;
     padding: 40px 10px;
     font-size: 15px;
-    /* color: rgb(255, 255, 255,); */
+    color: rgb(255, 255, 255);
 
 }
 .searchbar button img{
@@ -232,7 +237,7 @@ section{
 }
 
 .nav-btn :hover{
-    filter: invert(80%);
+    background-color: rgb(37, 124, 111);
 }
 
 .home{
@@ -268,6 +273,7 @@ section{
 .content h3{
     color: var(--white);
     text-transform: uppercase;
+    font-style: italic;
     font-size: 4rem;
     line-height: 1.8;
     text-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
@@ -297,7 +303,7 @@ section{
     border-left:var(--border-left);
     box-shadow: var(--box-shadow);
     padding:2rem;
-    backdrop-filter: blur(.4rem);
+    backdrop-filter: blur(.6rem);
 }
 
 .courses .box-container .box img{
@@ -353,7 +359,7 @@ section{
     border-left:var(--border-left);
     box-shadow: var(--box-shadow);
     padding:2rem;
-    backdrop-filter: blur(.4rem);
+    backdrop-filter: blur(.6rem);
 }
 
 .teachers .box-container .box img{
@@ -409,7 +415,7 @@ section{
     border-left:var(--border-left);
     box-shadow: var(--box-shadow);
     padding:2rem 0;
-    backdrop-filter: blur(.4rem);
+    backdrop-filter: blur(.6rem);
 }
 
 .plan .box-container .box i{
@@ -455,6 +461,10 @@ section{
 
 .plan .box-container .box a:hover{
     letter-spacing: .1rem;
+    /* background-color: rgb(64, 255, 47); */
+    font-size: 20px;
+    background-color: rgb(57,130,119);
+    /* filter: invert(100%); */
 }
 
 .plan .box-container .box .price{
@@ -484,7 +494,7 @@ section{
     border-left:var(--border-left);
     box-shadow: var(--box-shadow);
     padding:2rem;
-    backdrop-filter: blur(.4rem);
+    backdrop-filter: blur(.6rem);
 }
 
 .review .box-container .box .image{
@@ -543,7 +553,7 @@ section{
     border-left:var(--border-left);
     box-shadow: var(--box-shadow);
     padding:2rem;
-    backdrop-filter: blur(.4rem);
+    backdrop-filter: blur(.6rem);
 }
 
 .contact form .box{
@@ -602,8 +612,74 @@ section{
     z-index: 9999999;
 }
 
+.box img{
+height:7rem;
+width:19rem;
+border-radius: 100%;
+object-fit: cover;
+}
+
+/* footer  */
 
 
 
 
-
+.footer-basic {
+    padding:40px 0;
+    /* background-color:brown; */
+    color:white;
+  }
+  
+  .footer-basic ul {
+    padding:0;
+    list-style:none;
+    text-align:center;
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:0;
+  }
+  
+  .footer-basic li {
+    padding:0 10px;
+  }
+  
+  .footer-basic ul a {
+    color:inherit;
+    text-decoration:none;
+    opacity:0.8;
+  }
+  
+  .footer-basic ul a:hover {
+    opacity:1;
+  }
+  
+  .footer-basic .social {
+    text-align:center;
+    padding-bottom:25px;
+  }
+  
+  .footer-basic .social > a {
+    font-size:24px;
+    width:40px;
+    height:40px;
+    line-height:40px;
+    display:inline-block;
+    text-align:center;
+    border-radius:50%;
+    border:1px solid #ccc;
+    margin:0 8px;
+    color:inherit;
+    opacity:0.75;
+  }
+  
+  .footer-basic .social > a:hover {
+    opacity:0.9;
+  }
+  
+  .footer-basic .copyright {
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+    color:#aaa;
+    margin-bottom:0;
+  }
